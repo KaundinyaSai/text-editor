@@ -94,6 +94,39 @@ app.whenReady().then(() => {
         },
       ],
     },
+    {
+      label: "Edit",
+      role: "editMenu",
+    },
+    {
+      label: "Settings",
+      submenu: [
+        {
+          label: "Prefrences",
+          submenu: [
+            {
+              label: "Dark Mode",
+              type: "checkbox",
+              click: () => {
+                mainWindow.webContents.send("Theme-Change");
+              },
+            },
+          ],
+        },
+        {
+          label: "DevTools",
+          role: "toggleDevTools",
+        },
+      ],
+    },
+    {
+      label: "View",
+      role: "viewMenu",
+    },
+    {
+      label: "Window",
+      role: "windowMenu",
+    },
   ]);
 
   Menu.setApplicationMenu(menu);

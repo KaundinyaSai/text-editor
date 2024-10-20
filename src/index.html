@@ -2,10 +2,27 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World!</title>
+    <title>Text Editor</title>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <div id="main" contenteditable="true"></div>
+
+    <script>
+      // Detect when the menu button is clicked
+      window.electronAPI.onMenuButtonClick(() => {
+        toggleTheme();
+      });
+
+      function toggleTheme() {
+        if (document.body.classList.contains("darkMode")) {
+          document.body.classList.remove("darkMode");
+          document.body.classList.add("lightMode");
+        } else {
+          document.body.classList.remove("lightMode");
+          document.body.classList.add("darkMode"); // Add darkMode class
+        }
+      }
+    </script>
   </body>
 </html>
