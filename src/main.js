@@ -66,13 +66,17 @@ app.whenReady().then(() => {
           click: () => {
             let mainContent;
             mainWindow.webContents
-              .executeJavaScript("document.getElementById('main').innerHTML")
+              .executeJavaScript("document.getElementById('main').innerText")
               .then((content) => {
-                mainContent = content;
+                // Replace non-breaking spaces with regular spaces before saving
+                mainContent = content.replace(/\u00A0/g, " ");
 
                 dialog
                   .showSaveDialog({
-                    filters: [{ name: "Text Files", extensions: ["txt"] }],
+                    filters: [
+                      { name: "Text Files", extensions: ["txt"] },
+                      { name: "Python files", extensions: ["py"] },
+                    ],
                   })
                   .then((result) => {
                     if (!result.canceled) {
@@ -150,4 +154,4 @@ app.on("window-all-closed", () => {
 });
 
 // In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
+// code. You can also put t
